@@ -28,13 +28,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- devtools to refresh -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
 		<!-- Driver PostgreSQL -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -54,8 +47,8 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- java-dotenv pour charger les variables d'environnement
-		à partir d'un fichier .env -->
+		<!-- java-dotenv to load "env. var"
+		from ".env" file -->
 		<!-- https://central.sonatype.com/artifact/io.github.cdimascio/dotenv-java/2.2.3 -->
 		<dependency>
 			<groupId>io.github.cdimascio</groupId>
