@@ -1,10 +1,8 @@
 package com.api.APIMarcheAvecEliane.controller;
 
 import com.api.APIMarcheAvecEliane.model.Outing;
-import com.api.APIMarcheAvecEliane.model.Volunteer;
 import com.api.APIMarcheAvecEliane.service.OutingService;
 import com.api.APIMarcheAvecEliane.service.VolunteerService;
-import com.api.APIMarcheAvecEliane.service.ElderlyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -175,3 +173,32 @@ public class OutingController {
         return ResponseEntity.ok("Outing with ID " + id + " has been successfully deleted 🧽 ");
     }
 }
+
+//{
+//    "outingDates": ["1999-06-17T10:00:00"],
+//    "elderly": {
+//        "id": "4b5d40e8-1c5a-46d0-9f7e-1e0f6124ef3c"
+//    },
+//    "volunteer": {
+//        "id": "6c0068a8-07e6-4683-93e2-374d01e389b5",
+//        "firstName": "Æon",
+//        "lastName": "Bellet",
+//        "addressStreet": "7, rue Infinie",
+//        "addressCity": "Paris",
+//        "zipCode": "75019",
+//        "mobileNumber": "01 60 75 90 62",
+//        "landlineNumber": "06 20 81 81 56",
+//        "emailVolunteer": "aeonbellet@gmail.com",
+//        "password": "JeSuisUneStar<3",
+//        "dateOfBirth": "2005-11-13T23:00:00.000+00:00",
+//        "entryDate": "2023-07-19T22:00:00.000+00:00"
+//    }
+//}
+
+//{
+//    "outingDates": ["1999-06-17T10:00:00"],
+//    "elderly": {
+//        "id": "4b5d40e8-1c5a-46d0-9f7e-1e0f6124ef3c"
+//    },
+//    "volunteer": null
+//}
