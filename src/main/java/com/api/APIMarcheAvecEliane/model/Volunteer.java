@@ -1,14 +1,24 @@
 package com.api.APIMarcheAvecEliane.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
 import java.util.UUID;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder // Lombok qui ajoute les methodes build pour le register
+@Table (name ="Volunteer")
 @Entity
 public class Volunteer {
     @Id
@@ -16,36 +26,59 @@ public class Volunteer {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id_volunteer", updatable = false, nullable = false)
     private UUID id;
-    @Column(name = "first_name_volunteer", nullable = false, length = 25)
-    private String firstName;
 
-    @Column(name = "last_name_volunteer", nullable = false, length = 35)
-    private String lastName;
+    @NotNull(message = "Le prénom ne peut pas être null")
+    @Size(max = 25, message = "Le prénom ne peut pas dépasser 25 caractères")
+    @Column(name = "first_name_volunteer")
+    private String firstname;
 
-    @Column(name = "address_street_volunteer", nullable = false, length = 100)
+    @NotNull(message = "Le nom de famille ne peut pas être null")
+    @Size(max = 35, message = "Le nom de famille ne peut pas dépasser 35 caractères")
+    @Column(name = "last_name_volunteer")
+    private String lastname;
+
+    @NotNull(message = "L'adresse de la rue ne peut pas être null")
+    @Size(max = 100, message = "L'adresse de la rue ne peut pas dépasser 100 caractères")
+    @Column(name = "address_street_volunteer")
     private String addressStreet;
 
-    @Column(name = "address_city_volunteer", nullable = false, length = 50)
+    @NotNull(message = "La ville ne peut pas être null")
+    @Size(max = 50, message = "La ville ne peut pas dépasser 50 caractères")
+    @Column(name = "address_city_volunteer")
     private String addressCity;
 
-    @Column(name = "zip_code_volunteer", nullable = false, length = 10)
+    @NotNull(message = "Le code postal ne peut pas être null")
+    @Size(max = 10, message = "Le code postal ne peut pas dépasser 10 caractères")
+    @Column(name = "zip_code_volunteer")
     private String zipCode;
 
-    @Column(name = "mobile_number_volunteer", nullable = false, length = 20)
+    @NotNull(message = "Le numéro de mobile ne peut pas être null")
+    @Size(max = 20, message = "Le numéro de mobile ne peut pas dépasser 20 caractères")
+    @Column(name = "mobile_number_volunteer")
     private String mobileNumber;
 
-    @Column(name = "landline_number_volunteer", nullable = true,  length = 20)
+    @Nullable
+    @Size(max = 20, message = "Le numéro de téléphone fixe ne peut pas dépasser 20 caractères")
+    @Column(name = "landline_number_volunteer")
     private String landlineNumber;
 
-    @Column(name = "email_volunteer", nullable = false, length = 50)
-    private String emailVolunteer;
+    @Email(message = "L'email doit être valide")
+    @NotNull(message = "L'email ne peut pas être null")
+    @Size(max = 50, message = "L'email ne peut pas dépasser 50 caractères")
+    @Column(name = "email_volunteer")
+    private String email;
 
+    @NotNull(message = "Le mot de passe ne peut pas être null")
+    @Size(max = 64, message = "Le mot de passe ne peut pas dépasser 64 caractères")
     @Column(name = "password_volunteer", nullable = false, length = 64)
     private String password;
 
-    @Column(name = "date_of_birth_volunteer", nullable = true)
+    @Nullable
+    @Column(name = "date_of_birth_volunteer")
     private Date dateOfBirth;
-    @Column(name = "entry_date_volunteer", nullable = false)
+
+    @NotNull(message = "La date d'entrée ne peut pas être null")
+    @Column(name = "entry_date_volunteer")
     private Date entryDate;
 
     // GETTERS & SETTERS
@@ -59,19 +92,19 @@ public class Volunteer {
     }
 
     public String getFirstName() {
-        return firstName;
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastName() {
-        return lastName;
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getAddressStreet() {
@@ -115,11 +148,11 @@ public class Volunteer {
     }
 
     public String getEmailVolunteer() {
-        return emailVolunteer;
+        return email;
     }
 
-    public void setEmailVolunteer(String emailVolunteer) {
-        this.emailVolunteer = emailVolunteer;
+    public void setEmailVolunteer(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

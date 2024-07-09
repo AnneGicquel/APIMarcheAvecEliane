@@ -1,13 +1,18 @@
 package com.api.APIMarcheAvecEliane.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder // pour le register
+@Table(name ="Coordinator")
 @Entity
 public class Coordinator {
     @Id
@@ -17,10 +22,10 @@ public class Coordinator {
     private UUID id;
 
     @Column(name = "first_name_coordinator", nullable = false, length = 25)
-    private String firstName;
+    private String firstname;
 
     @Column(name = "last_name_coordinator", nullable = false, length = 35)
-    private String lastName;
+    private String lastname;
 
     @Column(name = "email_coordinator", nullable = false, length = 50)
     private String email;
@@ -39,19 +44,19 @@ public class Coordinator {
     }
 
     public String getFirstName() {
-        return firstName;
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getLastName() {
-        return lastName;
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
