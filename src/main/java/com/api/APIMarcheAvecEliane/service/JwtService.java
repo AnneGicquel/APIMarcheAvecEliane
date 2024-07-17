@@ -1,5 +1,9 @@
 package com.api.APIMarcheAvecEliane.service;
 
+import com.api.APIMarcheAvecEliane.model.Coordinator;
+import com.api.APIMarcheAvecEliane.model.Volunteer;
+import com.api.APIMarcheAvecEliane.security.CoordinatorDetailsImpl;
+import com.api.APIMarcheAvecEliane.security.VolunteerDetailsImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -83,6 +87,11 @@ public class JwtService {
             throw new RuntimeException("Token is null or empty", e);
         }
     }
+
+    //🟣
+    //🟣
+
+
 
     public boolean isTokenValid(String token, UserDetails userDetails){
         final String username = extractUsername(token);

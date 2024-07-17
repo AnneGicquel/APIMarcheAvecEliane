@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface VolunteerRepository extends JpaRepository<Volunteer, UUID> {
     Optional<Volunteer> findByEmail(String email);
     // method findBy  "query method" by spring + Email as parameter
+
+    //Optional<Volunteer> findByEmailAddress(String email);
 }

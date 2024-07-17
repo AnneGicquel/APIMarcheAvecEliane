@@ -24,7 +24,8 @@ public class Volunteer {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id_volunteer", updatable = false, nullable = false)
+    @NotNull(message = "L'ID ne peut pas être null")
+    @Column(name = "id_volunteer", updatable = false)
     private UUID id;
 
     @NotNull(message = "Le prénom ne peut pas être null")
@@ -64,13 +65,13 @@ public class Volunteer {
 
     @Email(message = "L'email doit être valide")
     @NotNull(message = "L'email ne peut pas être null")
-    @Size(max = 50, message = "L'email ne peut pas dépasser 50 caractères")
+    @Size(max = 320, message = "L'email ne peut pas dépasser 320 caractères")
     @Column(name = "email_volunteer")
     private String email;
 
     @NotNull(message = "Le mot de passe ne peut pas être null")
     @Size(max = 64, message = "Le mot de passe ne peut pas dépasser 64 caractères")
-    @Column(name = "password_volunteer", nullable = false, length = 64)
+    @Column(name = "password_volunteer")
     private String password;
 
     @Nullable

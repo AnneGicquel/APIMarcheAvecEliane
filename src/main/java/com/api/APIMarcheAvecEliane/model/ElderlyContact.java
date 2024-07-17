@@ -1,9 +1,12 @@
 package com.api.APIMarcheAvecEliane.model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
@@ -13,25 +16,38 @@ public class ElderlyContact {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id_elderly_contact", updatable = false, nullable = false)
+    @NotNull(message = "L'ID ne peut pas être null")
+    @Column(name = "id_elderly_contact", updatable = false)
     private UUID id;
 
-    @Column(name = "first_name_elderly_contact", nullable = false, length = 25)
+    @NotNull(message = "Le prénom ne peut pas être null")
+    @Size(max = 25, message = "Le prénom ne peut pas dépasser 25 caractères")
+    @Column(name = "first_name_elderly_contact")
     private String firstName;
 
-    @Column(name = "last_name_elderly_contact",nullable = false, length = 35)
+    @NotNull(message = "Le nom de famille ne peut pas être null")
+    @Size(max = 35, message = "Le nom de famille ne peut pas dépasser 35 caractères")
+    @Column(name = "last_name_elderly_contact")
     private String lastName;
 
-    @Column(name = "mobile_number_elderly_contact",nullable = false, length = 20)
+    @NotNull(message = "Le numéro de mobile ne peut pas être null")
+    @Size(max = 20, message = "Le numéro de mobile ne peut pas dépasser 20 caractères")
+    @Column(name = "mobile_number_elderly_contact")
     private String mobileNumber;
 
-    @Column(name = "landline_number_elderly_contact",nullable = true, length = 20)
+    @Nullable
+    @Size(max = 20, message = "Le numéro de téléphone fixe ne peut pas dépasser 20 caractères")
+    @Column(name = "landline_number_elderly_contact")
     private String landlineNumber;
 
-    @Column(name = "comments_elderly_contact", nullable = true, length = 1000)
+    @Nullable
+    @Size(max = 1000, message = "Les commentaires ne peuvent pas dépasser 1000 caractères")
+    @Column(name = "comments_elderly_contact")
     private String comments;
 
-    @Column(name = "relationship_elderly_contact", nullable = false, length = 100)
+    @NotNull(message = "Le lien de parenté ne peut pas être null")
+    @Size(max = 20, message = "Le lien de parenté ne peut pas dépasser 100 caractères")
+    @Column(name = "relationship_elderly_contact")
     private String relationship;
 
     // GETTERS & SETTERS
