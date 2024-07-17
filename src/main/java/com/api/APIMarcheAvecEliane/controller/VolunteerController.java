@@ -35,6 +35,13 @@ public class VolunteerController {
         return volunteer.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    // http://localhost:8080/api/volunteers/getVolunteerByEmail/{email}
+    @GetMapping("/getVolunteerByEmail/{email}")
+    public ResponseEntity<Volunteer> getVolunteerByEmail(@PathVariable String email) {
+        Optional<Volunteer> volunteer = volunteerService.getVolunteerByEmail(email);
+        return volunteer.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     // http://localhost:8080/api/volunteers/createNewVolunteer
     @PostMapping("/createNewVolunteer")
     public ResponseEntity<Volunteer> createNewVolunteer(@RequestBody Volunteer volunteer) {

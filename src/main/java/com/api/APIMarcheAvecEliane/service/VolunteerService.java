@@ -42,4 +42,8 @@ public class VolunteerService {
     public void deleteVolunteerById(UUID id) {
         volunteerRepository.deleteById(id);
     }
+
+    public Optional<Volunteer> getVolunteerByEmail(String email) {
+        return volunteerRepository.findByEmail(email);
+    }
 }
