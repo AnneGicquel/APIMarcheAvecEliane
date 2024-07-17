@@ -5,6 +5,7 @@ import com.api.APIMarcheAvecEliane.service.ElderlyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,12 +23,14 @@ public class ElderlyController {
     }
 
     // http://localhost:8080/api/elderlies/getAllElderlies
+    @PreAuthorize("hasRole('COORDINATOR')")
     @GetMapping("/getAllElderlies")
     public List<Elderly> getAllElderlies() {
         return elderlyService.getAllElderlies();
     }
 
     // http://localhost:8080/api/elderlies/getElderlyById/{id}"
+    @PreAuthorize("hasRole('COORDINATOR')")
     @GetMapping("/getElderlyById/{id}")
     public ResponseEntity<Elderly> getElderlyById(@PathVariable UUID id) {
         Optional<Elderly> elderly = elderlyService.getElderlyById(id);
@@ -36,6 +39,7 @@ public class ElderlyController {
 
     // http://localhost:8080/api/elderlies/createNewElderly
 
+    @PreAuthorize("hasRole('COORDINATOR')")
     @PostMapping("/createNewElderly")
     public ResponseEntity<Elderly> createNewElderly(@RequestBody Elderly elderly) {
         Elderly createdElderly = elderlyService.createNewElderly(elderly);
@@ -43,6 +47,7 @@ public class ElderlyController {
     }
 
     // http://localhost:8080/api/elderlies/updateElderly/{id}
+    @PreAuthorize("hasRole('COORDINATOR')")
     @PutMapping("/updateElderly/{id}")
     public ResponseEntity<Elderly> updateElderly(@PathVariable UUID id, @RequestBody Elderly elderly) {
         Elderly updatedElderly = elderlyService.updateElderly(id, elderly);
@@ -50,6 +55,7 @@ public class ElderlyController {
     }
 
     // http://localhost:8080/api/elderlies/deleteElderlyById/{id}
+    @PreAuthorize("hasRole('COORDINATOR')")
     @DeleteMapping("/deleteElderlyById/{id}")
     public ResponseEntity<String> deleteElderlyById(@PathVariable UUID id) {
         elderlyService.deleteElderlyById(id);
