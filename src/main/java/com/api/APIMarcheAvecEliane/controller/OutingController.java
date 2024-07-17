@@ -6,6 +6,7 @@ import com.api.APIMarcheAvecEliane.service.VolunteerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,6 +47,7 @@ public class OutingController {
     }
 
     // http://localhost:8080/api/outings/createNewOuting
+    @PreAuthorize("hasRole('COORDINATOR')")
     @PostMapping("/createNewOuting")
     public ResponseEntity<Outing> createNewOuting(@RequestBody Outing outing) {
         Outing createdOuting = outingService.createNewOuting(outing);
@@ -77,6 +79,7 @@ public class OutingController {
      // 🟣 Update (item from List) outings by Elderly id
 
     // http://localhost:8080/api/outings/updateOutingByElderlyId/cee01e53-eb48-4a32-9024-aa15e6f5cda0/outing/a61e9037-8698-471d-a039-a6dca66ba4e7
+    @PreAuthorize("hasRole('COORDINATOR')")
     @PutMapping("/updateOutingByElderlyId/{elderlyId}/outing/{outingId}")
     public ResponseEntity<Outing> updateOutingByElderlyId(@PathVariable UUID elderlyId, @PathVariable UUID outingId, @RequestBody Outing updatedOuting) {
         Outing outing = outingService.updateOutingByElderlyId(elderlyId, outingId, updatedOuting);
@@ -160,6 +163,7 @@ public class OutingController {
     ///// OUTING PART ..... IF NEEDED LATER
 
     // http://localhost:8080/api/outings/updateOuting/{id}
+    @PreAuthorize("hasRole('COORDINATOR')")
     @PutMapping("/updateOuting/{id}")
     public ResponseEntity<Outing> updateOuting(@PathVariable UUID id, @RequestBody Outing outing) {
         Outing updatedOuting = outingService.updateOutingById(id, outing);

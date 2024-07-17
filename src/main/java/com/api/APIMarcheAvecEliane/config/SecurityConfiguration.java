@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -13,9 +15,12 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
+@EnableGlobalMethodSecurity(
+        prePostEnabled = true,
+        securedEnabled = true)
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfiguration {
+public class SecurityConfiguration extends GlobalMethodSecurityConfiguration {
 
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
@@ -29,29 +34,10 @@ public class SecurityConfiguration {
 
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                         authorizationManagerRequestMatcherRegistry
-                                .requestMatchers("/api/register").permitAll() // Allow access to register endpoint
+                                .requestMatchers("/api/register").permitAll()
                                 .requestMatchers("/api/authenticate").permitAll()
-                                .requestMatchers("/api/volunteers/getAllVolunteers").hasRole("COORDINATOR")
+                                .requestMatchers("/api/elderlies/getAllElderlies").hasRole("COORDINATOR")
 
-                //TESTT
-                //.requestMatchers("/api/elderlies/getAllElderlies").hasAnyRole("VOLUNTEER")
-                //. FONCTIONNE PAS requestMatchers("/api/elderlies/getAllElderlies").authenticated()
-                //. SURTOUT PASSSS anyRequest().permitAll()
-
-
-
-                //.requestMatchers("/volunteer/excluded").denyAll() // page excluded for volunteer
-                //.requestMatchers("/coordinator/specificPage").hasRole("COORDINATOR")
-
-                //.🟡requestMatchers("/coordinator/**").hasRole("COORDINATOR")
-
-                // specific page for coordinator
-
-                //🟡.requestMatchers("/volunteer/**").hasRole("VOLUNTEER")
-                //.requestMatchers("/coordinator/**").hasRole("COORDINATOR")
-                //.requestMatchers("/login/**").permitAll()
-
-                //🟡
                 .anyRequest().authenticated())
 
 
