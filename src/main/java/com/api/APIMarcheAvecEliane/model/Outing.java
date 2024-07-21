@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.UUID;
 
 @Table (name ="Outing")
@@ -75,5 +76,19 @@ public class Outing {
 
     public void setCoordinator(Coordinator coordinator) {
         this.coordinator = coordinator;
+    }
+
+    // FOR UNIT TEST
+    @Override
+    public String toString() {
+        return "Outing{\n" +
+                "                           id → " + id + ",\n" +
+                "                           outingDates → " + Arrays.toString(outingDates) + ",\n" +
+                "                           elderly → " + elderly.getPseudo() + ", " + elderly.getLandlineNumber() + ",\n" +
+                "                           volunteer → " + volunteer.getFirstName() + ", " + volunteer.getLastName() + ", "
+                                                          + volunteer.getEmailVolunteer() + "\n" +
+                "                           coordinator →  " + coordinator.getFirstName() + ", " + coordinator.getLastName()+ ", "
+                                                             + coordinator.getEmail() + "\n" +
+                '}';
     }
 }

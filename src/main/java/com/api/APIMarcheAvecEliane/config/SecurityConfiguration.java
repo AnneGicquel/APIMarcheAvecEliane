@@ -46,7 +46,7 @@ public class SecurityConfiguration extends GlobalMethodSecurityConfiguration {
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
                         httpSecuritySessionManagementConfigurer
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-
+                                //Cette option implique que le Security Context expire (et est donc nettoyé) à chaque requête, et donc qu’une preuve d’authentification/de droits doit être fournie à Spring Security avec chaque requête à destination d’endpoints protégés
         return http.build();
     }
 }
